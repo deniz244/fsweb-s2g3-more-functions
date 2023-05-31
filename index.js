@@ -18,7 +18,7 @@
 
 function dosyaAdiniBul(path) {
   
-  const yeni = path.split("/");
+  const yeni = path.split("/");//split sonunda .pop() da yapılabilirdi
   return yeni[yeni.length - 1]
   //return yeni.slice(-1); ----- [""] veya ["Beethoven_5.mp3"] şeklinde dönüyor
   
@@ -44,17 +44,14 @@ dosyaAdiniBul("C:/Users/johnsmith/Music/Beethoven_5.mp3");
 
 function ortalamaBul(sDizi) {
 
-  //null kontrolü yok
 
-  let total = 0;
-  let count = 0;
+if(sDizi.length === 0){
+  return null;
+}
+// baştaki if olmasa 0/0 ----NaN dönüyor null dönmüyor
+const diziToplami = sDizi.reduce((toplam,sayi) => toplam + sayi,0);
+return diziToplami/sDizi.length
 
-  sDizi.forEach(function(item) {
-      total += item;
-      count++;
-  });
-
-  return total / count;
   
 }
 ortalamaBul([109, 216, 288, 143, 71, 185, -278, 194, 5])
@@ -79,6 +76,10 @@ ortalamaBul([109, 216, 288, 143, 71, 185, -278, 194, 5])
 */
 
 function ortalamadanBuyukleriBul(dizi,ortBul) {
+
+  if(dizi.length === 0){
+    return null;
+  }
   
   const ortalamadanBuyukEsit = dizi.filter((eleman) => eleman >= ortBul(dizi))
   //console.log("ortalama büyük eşit",ortalamadanBuyukEsit)
